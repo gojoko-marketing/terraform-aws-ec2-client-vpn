@@ -264,7 +264,7 @@ resource "aws_ec2_client_vpn_route" "default" {
 data "awsutils_ec2_client_vpn_export_client_config" "default" {
   profile = "network-services"
   region  = "eu-west-1"
-  
+
   count = local.enabled ? 1 : 0
 
   id = join("", aws_ec2_client_vpn_endpoint.default[*].id)
@@ -272,7 +272,9 @@ data "awsutils_ec2_client_vpn_export_client_config" "default" {
 
 data "aws_ssm_parameter" "root_key" {
   count = local.export_client_certificate ? 1 : 0
+
   name = module.self_signed_cert_root.certificate_key_path
+
   # Necessary to retrieve the ssm parameter after the module is created
   # The implicit output in the name isn't enough.
   depends_on = [
