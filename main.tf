@@ -271,8 +271,6 @@ data "awsutils_ec2_client_vpn_export_client_config" "default" {
 }
 
 data "aws_ssm_parameter" "root_key" {
-  profile = "network-services"
-  region  = "eu-west-1
   count = local.export_client_certificate ? 1 : 0
 
   name = module.self_signed_cert_root.certificate_key_path
