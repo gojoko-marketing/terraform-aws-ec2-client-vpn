@@ -262,6 +262,9 @@ resource "aws_ec2_client_vpn_route" "default" {
 }
 
 data "awsutils_ec2_client_vpn_export_client_config" "default" {
+  profile = "network-services"
+  region  = "eu-west-1"
+  
   count = local.enabled ? 1 : 0
 
   id = join("", aws_ec2_client_vpn_endpoint.default[*].id)
