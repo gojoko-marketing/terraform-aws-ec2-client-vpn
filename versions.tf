@@ -12,3 +12,12 @@ terraform {
     }
   }
 }
+
+provider "aws" {
+  region  = "eu-west-1"
+  profile = "network-services"
+
+#  default_tags {
+#    tags = module.tags.tags
+#  }
+}
